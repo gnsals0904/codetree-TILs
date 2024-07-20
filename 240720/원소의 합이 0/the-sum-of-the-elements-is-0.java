@@ -45,10 +45,7 @@ public class Main {
                 int temp = (C[i] + D[j]) * -1;
                 if(map.containsKey(temp)){
                     int cnt = map.get(temp);
-                    if(cnt > 0) {
-                        result++;
-                        map.put(temp, cnt - 1);
-                    }
+                    result += cnt;
                 }
             }
         }
