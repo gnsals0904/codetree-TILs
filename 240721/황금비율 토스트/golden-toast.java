@@ -36,7 +36,7 @@ public class Main {
             }
             else if(order == 'P') {
                 it.add(st.nextToken().charAt(0));
-                it.next();
+                if(it.hasNext()) it.next();
             }
         }
         it = list.listIterator();
