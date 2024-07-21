@@ -32,11 +32,14 @@ public class Main {
                 if (it.hasNext()) it.next();
             }
             else if(order == 'D') {
-                it.remove();
+                if (it.hasNext()) {
+                    it.next();
+                    it.remove();
+                }
             }
             else if(order == 'P') {
                 it.add(st.nextToken().charAt(0));
-                if(it.hasNext()) it.next();
+                // if(it.hasNext()) it.next();
             }
         }
         it = list.listIterator();
