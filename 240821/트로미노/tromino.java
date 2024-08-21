@@ -28,7 +28,7 @@ public class Main {
     }
 
     static void dfs(int x, int y, int tempSum, int k){
-        if(k > 3){
+        if(k >= 3){
             result = Math.max(result, tempSum);
             return;
         }
