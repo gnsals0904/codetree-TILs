@@ -1,43 +1,73 @@
-import java.util.*;
-import java.io.*;
+import java.util.Scanner;
 
 public class Main {
-    static int N, M;
-    static int[][] graph;
-    static int[][] vector = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
-    static int result = 0;
-    public static void main(String[] args) throws Exception{
-        InputStreamReader ir = new InputStreamReader(System.in);
-        BufferedReader br = new BufferedReader(ir);
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        N = Integer.parseInt(st.nextToken());
-        M = Integer.parseInt(st.nextToken());
-        graph = new int[N][M];
-        for(int i = 0; i < N; i++){
-            st = new StringTokenizer(br.readLine());
-            for(int j = 0; j < M; j++){
-                graph[i][j] = Integer.parseInt(st.nextToken());
-            }
+    public static final int MAX_NUM = 200;
+    
+    public static int n, m;
+    public static int[][] grid = new int[MAX_NUM][MAX_NUM];
+    
+    // 가능한 모든 모양을 전부 적어줍니다.
+    public static int[][][] shapes = new int[][][]{
+        {{1, 1, 0},
+        {1, 0, 0},
+        {0, 0, 0}},
+    
+        {{1, 1, 0},
+        {0, 1, 0},
+        {0, 0, 0}},
+    
+        {{1, 0, 0},
+        {1, 1, 0},
+        {0, 0, 0}},
+    
+        {{0, 1, 0},
+        {1, 1, 0},
+        {0, 0, 0}},
+    
+        {{1, 1, 1},
+        {0, 0, 0},
+        {0, 0, 0}},
+    
+        {{1, 0, 0},
+        {1, 0, 0},
+        {1, 0, 0}},
+    };
+    
+    // 주어진 위치에 대하여 가능한 모든 모양을 탐색하며 최대 합을 반환합니다.
+    public static int getMaxSum(int x, int y) {
+        int maxSum = 0;
+        
+        for(int i = 0; i < 6; i++) {
+            int sum = 0;
+            for(int dx = 0; dx < 3; dx++)
+                for(int dy = 0; dy < 3; dy++) {
+                    if(shapes[i][dx][dy] == 0) continue;
+                    if(x + dx >= n || y + dy >= m) continue;
+                    else sum += grid[x + dx][y + dy];
+                }
+            maxSum = Math.max(maxSum, sum);
         }
-        for(int i = 0; i < N; i++){
-            for(int j = 0; j < M; j++){
-                dfs(i, j, graph[i][j], 1);
-            }
-        }
-        System.out.println(result);
+        
+        return maxSum;
     }
 
-    static void dfs(int x, int y, int tempSum, int k){
-        if(k >= 3){
-            result = Math.max(result, tempSum);
-            return;
-        }
-        for(int[] v: vector){
-            int nx = v[0] + x;
-            int ny = v[1] + y;
-            if(nx < 0 || ny < 0 || nx >= N || ny >= M) continue;
-            // System.out.println("nx ny : " + nx + " : " + ny);
-            dfs(nx, ny, tempSum + graph[nx][ny], k + 1);
-        }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        n = sc.nextInt();
+        m = sc.nextInt();
+        
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < m; j++)
+                grid[i][j] = sc.nextInt();
+        
+        int ans = 0;
+        
+        // 격자의 각 위치에 대하여 탐색하여줍니다.
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < m; j++)
+                ans = Math.max(ans, getMaxSum(i, j));
+        
+        System.out.print(ans);
     }
 }
