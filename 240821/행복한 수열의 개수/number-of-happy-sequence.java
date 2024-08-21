@@ -30,7 +30,7 @@ public class Main {
 
     static int seroHappyNumber(int y){
         int count = 1;
-        int maxCount = 0;
+        int maxCount = 1;
         int prevNum = graph[0][y];
         for(int i = 1; i < N; i++){
             if(prevNum != graph[i][y]){
@@ -47,7 +47,7 @@ public class Main {
 
     static int garoHappyNumber(int x){
         int count = 1;
-        int maxCount = 0;
+        int maxCount = 1;
         int prevNum = graph[x][0];
         for(int i = 1; i < N; i++){
             if(prevNum != graph[x][i]){
