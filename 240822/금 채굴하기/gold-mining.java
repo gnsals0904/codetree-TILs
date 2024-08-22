@@ -31,6 +31,7 @@ public class Main {
 
     static int calcCoinAmount(int x, int y, int k){
         int gold = 0;
+        int maxGold = 0;
         if(graph[x][y] == 1) gold++;
         for(int size = 0; size <= k; size++){
             int i = x - size;
@@ -45,10 +46,11 @@ public class Main {
                     }
                 }
             }
+            if(canMiningCoin(size, gold)){
+                maxGold = Math.max(maxGold, gold);
+            }
         }
-        if (canMiningCoin(k, gold)) return gold;
-        else return 0;
-        
+        return maxGold;
     }
 
     static boolean canMiningCoin(int k, int amount){
