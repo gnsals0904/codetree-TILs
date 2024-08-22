@@ -30,13 +30,14 @@ public class Main {
     }
 
     static int calcCoinAmount(int x, int y, int k){
-        int maxGoldNum = 0;
+        int gold = 0;
+        if(graph[x][y] == 1) gold++;
         for(int size = 0; size <= k; size++){
             int i = x - size;
             int j = y;
-            int gold = 0;
             for(int[] v : vector){
                 for(int cnt = 0; cnt < size; cnt++){
+                    // System.out.println("i j size = " + i + " : " + j + " : " + size);
                     i = i + v[0];
                     j = j + v[1];
                     if(inRange(i, j)){
@@ -44,11 +45,10 @@ public class Main {
                     }
                 }
             }
-            if(canMiningCoin(size, gold)){
-                maxGoldNum = Math.max(maxGoldNum, gold);
-            }
         }
-        return maxGoldNum;
+        if (canMiningCoin(k, gold)) return gold;
+        else return 0;
+        
     }
 
     static boolean canMiningCoin(int k, int amount){
