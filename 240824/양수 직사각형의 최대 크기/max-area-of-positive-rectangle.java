@@ -17,7 +17,7 @@ public class Main {
                 graph[i][j] = Integer.parseInt(st.nextToken());
             }
         }
-        int result = 0;
+        int result = -1;
         for(int i = 0; i < N; i++){
             for(int j = 0; j < M; j++){
                 for(int x = i; x < N; x++){
