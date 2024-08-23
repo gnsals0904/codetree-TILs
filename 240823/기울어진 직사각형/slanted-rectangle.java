@@ -20,8 +20,8 @@ public class Main {
         }
         for(int i = 0; i < N; i++){
             for(int j = 0; j < N; j++){
-                for(int k = 0; k < N; k++){
-                    for(int m = 0; m < N; m++){
+                for(int k = 1; k < N; k++){
+                    for(int m = 1; m < N; m++){
                         result = Math.max(result, calcNumber(i, j, k, m));
                     }
                 }
@@ -36,7 +36,7 @@ public class Main {
         int tempResult = 0;
         int[] go = {width, length, width, length};
         for(int i = 0; i < 4; i++){
-            int count = 1;
+            int count = 0;
             while(count != go[i]){
                 nx += vector[i][0];
                 ny += vector[i][1];
