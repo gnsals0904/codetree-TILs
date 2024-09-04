@@ -5,7 +5,7 @@ public class Main {
     // a b c d e f
     static int[] alpha = new int[6];
     static int[] choice = new int[6];
-    static int result;
+    static int result = Integer.MIN_VALUE;
     static String inputs;
     public static void main(String[] args) throws Exception {
         InputStreamReader ir = new InputStreamReader(System.in);
