@@ -24,7 +24,7 @@ public class Main {
         for(int i = 1; i <= K; i++){
             list.add(i);
             if(i == prev){
-                if(count < K){
+                if(count < 2){
                     dfs(i, count + 1, depth + 1);
                 }
             }
